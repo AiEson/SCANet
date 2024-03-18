@@ -1,0 +1,11 @@
+# arguments for dataset
+dataset: mass
+nclass: 1
+crop_size: 512
+data_root: /path/to/mass/dataset/
+
+# arguments for training
+epochs: 1024
+batch_size: 4
+lr: 0.001
+accum_iter: 1

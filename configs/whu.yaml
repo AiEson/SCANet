@@ -1,0 +1,11 @@
+# arguments for dataset
+dataset: whu
+nclass: 1
+crop_size: 512
+data_root: /path/to/whu/dataset/
+
+# arguments for training
+epochs: 648
+batch_size: 16  # per GPU x 1 GPU
+lr: 0.001
+accum_iter: 1
