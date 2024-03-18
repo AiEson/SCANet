@@ -1,11 +1,10 @@
 #!/bin/bash
-# define the axes
 dataset='whu'
 method='train'
-data_root=/path/to/whu/dataset/
+data_root=/path/to/whu/dataset
 decoder_name='unetplusplus'
 encoder_name='scanet-101e'
-notes='ce_adamw_512x'
+notes='bce_dice'
 
 now=$(date +"%Y%m%d_%H%M%S")
 exp=${decoder_name}'_'${encoder_name}'_'${notes}

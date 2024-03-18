@@ -2,7 +2,7 @@
 dataset: whu
 nclass: 1
 crop_size: 512
-data_root: /path/to/whu/dataset/
+data_root: /path/to/whu/dataset
 
 # arguments for training
 epochs: 648

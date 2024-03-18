@@ -350,152 +350,152 @@ class ResNeSCBottleneck(nn.Module):
         return out_o
 
 
-def _create_resnesc(variant, pretrained=False, **kwargs):
-    return build_model_with_cfg(ResNet, f"{variant}", pretrained, **kwargs)
+# def _create_resnesc(variant, pretrained=False, **kwargs):
+#     return build_model_with_cfg(ResNet, f"{variant}", pretrained, **kwargs)
 
 
-@register_model
-def resnest14d(pretrained=False, **kwargs):
-    """ResNeSt-14d model. Weights ported from GluonCV."""
-    model_kwargs = dict(
-        block=ResNeSCBottleneck,
-        layers=[1, 1, 1, 1],
-        stem_type="deep",
-        stem_width=32,
-        avg_down=True,
-        base_width=64,
-        cardinality=1,
-        block_args=dict(radix=2, avd=True, avd_first=False),
-        **kwargs,
-    )
-    return _create_resnesc("resnest14d", pretrained=pretrained, **model_kwargs)
+# @register_model
+# def resnest14d(pretrained=False, **kwargs):
+#     """ResNeSt-14d model. Weights ported from GluonCV."""
+#     model_kwargs = dict(
+#         block=ResNeSCBottleneck,
+#         layers=[1, 1, 1, 1],
+#         stem_type="deep",
+#         stem_width=32,
+#         avg_down=True,
+#         base_width=64,
+#         cardinality=1,
+#         block_args=dict(radix=2, avd=True, avd_first=False),
+#         **kwargs,
+#     )
+#     return _create_resnesc("resnest14d", pretrained=pretrained, **model_kwargs)
 
 
-@register_model
-def resnest26d(pretrained=False, **kwargs):
-    """ResNeSt-26d model. Weights ported from GluonCV."""
-    model_kwargs = dict(
-        block=ResNeSCBottleneck,
-        layers=[2, 2, 2, 2],
-        stem_type="deep",
-        stem_width=32,
-        avg_down=True,
-        base_width=64,
-        cardinality=1,
-        block_args=dict(radix=2, avd=True, avd_first=False),
-        **kwargs,
-    )
-    return _create_resnesc("resnest26d", pretrained=pretrained, **model_kwargs)
+# @register_model
+# def resnest26d(pretrained=False, **kwargs):
+#     """ResNeSt-26d model. Weights ported from GluonCV."""
+#     model_kwargs = dict(
+#         block=ResNeSCBottleneck,
+#         layers=[2, 2, 2, 2],
+#         stem_type="deep",
+#         stem_width=32,
+#         avg_down=True,
+#         base_width=64,
+#         cardinality=1,
+#         block_args=dict(radix=2, avd=True, avd_first=False),
+#         **kwargs,
+#     )
+#     return _create_resnesc("resnest26d", pretrained=pretrained, **model_kwargs)
 
 
-@register_model
-def resnest50d(pretrained=False, **kwargs):
-    """ResNeSt-50d model. Matches paper ResNeSt-50 model, https://arxiv.org/abs/2004.08955
-    Since this codebase supports all possible variations, 'd' for deep stem, stem_width 32, avg in downsample.
-    """
-    model_kwargs = dict(
-        block=ResNeSCBottleneck,
-        layers=[3, 4, 6, 3],
-        stem_type="deep",
-        stem_width=32,
-        avg_down=True,
-        base_width=64,
-        cardinality=1,
-        block_args=dict(radix=2, avd=True, avd_first=False),
-        **kwargs,
-    )
-    return _create_resnesc("resnest50d", pretrained=pretrained, **model_kwargs)
+# @register_model
+# def resnest50d(pretrained=False, **kwargs):
+#     """ResNeSt-50d model. Matches paper ResNeSt-50 model, https://arxiv.org/abs/2004.08955
+#     Since this codebase supports all possible variations, 'd' for deep stem, stem_width 32, avg in downsample.
+#     """
+#     model_kwargs = dict(
+#         block=ResNeSCBottleneck,
+#         layers=[3, 4, 6, 3],
+#         stem_type="deep",
+#         stem_width=32,
+#         avg_down=True,
+#         base_width=64,
+#         cardinality=1,
+#         block_args=dict(radix=2, avd=True, avd_first=False),
+#         **kwargs,
+#     )
+#     return _create_resnesc("resnest50d", pretrained=pretrained, **model_kwargs)
 
 
-@register_model
-def resnest101e(pretrained=False, **kwargs):
-    """ResNeSt-101e model. Matches paper ResNeSt-101 model, https://arxiv.org/abs/2004.08955
-    Since this codebase supports all possible variations, 'e' for deep stem, stem_width 64, avg in downsample.
-    """
-    model_kwargs = dict(
-        block=ResNeSCBottleneck,
-        layers=[3, 4, 23, 3],
-        stem_type="deep",
-        stem_width=64,
-        avg_down=True,
-        base_width=64,
-        cardinality=1,
-        block_args=dict(radix=2, avd=True, avd_first=False),
-        **kwargs,
-    )
-    return _create_resnesc("resnest101e", pretrained=pretrained, **model_kwargs)
+# @register_model
+# def resnest101e(pretrained=False, **kwargs):
+#     """ResNeSt-101e model. Matches paper ResNeSt-101 model, https://arxiv.org/abs/2004.08955
+#     Since this codebase supports all possible variations, 'e' for deep stem, stem_width 64, avg in downsample.
+#     """
+#     model_kwargs = dict(
+#         block=ResNeSCBottleneck,
+#         layers=[3, 4, 23, 3],
+#         stem_type="deep",
+#         stem_width=64,
+#         avg_down=True,
+#         base_width=64,
+#         cardinality=1,
+#         block_args=dict(radix=2, avd=True, avd_first=False),
+#         **kwargs,
+#     )
+#     return _create_resnesc("resnest101e", pretrained=pretrained, **model_kwargs)
 
 
-@register_model
-def resnest200e(pretrained=False, **kwargs):
-    """ResNeSt-200e model. Matches paper ResNeSt-200 model, https://arxiv.org/abs/2004.08955
-    Since this codebase supports all possible variations, 'e' for deep stem, stem_width 64, avg in downsample.
-    """
-    model_kwargs = dict(
-        block=ResNeSCBottleneck,
-        layers=[3, 24, 36, 3],
-        stem_type="deep",
-        stem_width=64,
-        avg_down=True,
-        base_width=64,
-        cardinality=1,
-        block_args=dict(radix=2, avd=True, avd_first=False),
-        **kwargs,
-    )
-    return _create_resnesc("resnest200e", pretrained=pretrained, **model_kwargs)
+# @register_model
+# def resnest200e(pretrained=False, **kwargs):
+#     """ResNeSt-200e model. Matches paper ResNeSt-200 model, https://arxiv.org/abs/2004.08955
+#     Since this codebase supports all possible variations, 'e' for deep stem, stem_width 64, avg in downsample.
+#     """
+#     model_kwargs = dict(
+#         block=ResNeSCBottleneck,
+#         layers=[3, 24, 36, 3],
+#         stem_type="deep",
+#         stem_width=64,
+#         avg_down=True,
+#         base_width=64,
+#         cardinality=1,
+#         block_args=dict(radix=2, avd=True, avd_first=False),
+#         **kwargs,
+#     )
+#     return _create_resnesc("resnest200e", pretrained=pretrained, **model_kwargs)
 
 
-@register_model
-def resnest269e(pretrained=False, **kwargs):
-    """ResNeSt-269e model. Matches paper ResNeSt-269 model, https://arxiv.org/abs/2004.08955
-    Since this codebase supports all possible variations, 'e' for deep stem, stem_width 64, avg in downsample.
-    """
-    model_kwargs = dict(
-        block=ResNeSCBottleneck,
-        layers=[3, 30, 48, 8],
-        stem_type="deep",
-        stem_width=64,
-        avg_down=True,
-        base_width=64,
-        cardinality=1,
-        block_args=dict(radix=2, avd=True, avd_first=False),
-        **kwargs,
-    )
-    return _create_resnesc("resnest269e", pretrained=pretrained, **model_kwargs)
+# @register_model
+# def resnest269e(pretrained=False, **kwargs):
+#     """ResNeSt-269e model. Matches paper ResNeSt-269 model, https://arxiv.org/abs/2004.08955
+#     Since this codebase supports all possible variations, 'e' for deep stem, stem_width 64, avg in downsample.
+#     """
+#     model_kwargs = dict(
+#         block=ResNeSCBottleneck,
+#         layers=[3, 30, 48, 8],
+#         stem_type="deep",
+#         stem_width=64,
+#         avg_down=True,
+#         base_width=64,
+#         cardinality=1,
+#         block_args=dict(radix=2, avd=True, avd_first=False),
+#         **kwargs,
+#     )
+#     return _create_resnesc("resnest269e", pretrained=pretrained, **model_kwargs)
 
 
-@register_model
-def resnest50d_4s2x40d(pretrained=False, **kwargs):
-    """ResNeSt-50 4s2x40d from https://github.com/zhanghang1989/ResNeSt/blob/master/ablation.md"""
-    model_kwargs = dict(
-        block=ResNeSCBottleneck,
-        layers=[3, 4, 6, 3],
-        stem_type="deep",
-        stem_width=32,
-        avg_down=True,
-        base_width=40,
-        cardinality=2,
-        block_args=dict(radix=4, avd=True, avd_first=True),
-        **kwargs,
-    )
-    return _create_resnesc("resnest50d_4s2x40d", pretrained=pretrained, **model_kwargs)
+# @register_model
+# def resnest50d_4s2x40d(pretrained=False, **kwargs):
+#     """ResNeSt-50 4s2x40d from https://github.com/zhanghang1989/ResNeSt/blob/master/ablation.md"""
+#     model_kwargs = dict(
+#         block=ResNeSCBottleneck,
+#         layers=[3, 4, 6, 3],
+#         stem_type="deep",
+#         stem_width=32,
+#         avg_down=True,
+#         base_width=40,
+#         cardinality=2,
+#         block_args=dict(radix=4, avd=True, avd_first=True),
+#         **kwargs,
+#     )
+#     return _create_resnesc("resnest50d_4s2x40d", pretrained=pretrained, **model_kwargs)
 
 
-@register_model
-def resnest50d_1s4x24d(pretrained=False, **kwargs):
-    """ResNeSt-50 1s4x24d from https://github.com/zhanghang1989/ResNeSt/blob/master/ablation.md"""
-    model_kwargs = dict(
-        block=ResNeSCBottleneck,
-        layers=[3, 4, 6, 3],
-        stem_type="deep",
-        stem_width=32,
-        avg_down=True,
-        base_width=24,
-        cardinality=4,
-        block_args=dict(radix=1, avd=True, avd_first=True),
-        **kwargs,
-    )
-    return _create_resnesc("resnest50d_1s4x24d", pretrained=pretrained, **model_kwargs)
+# @register_model
+# def resnest50d_1s4x24d(pretrained=False, **kwargs):
+#     """ResNeSt-50 1s4x24d from https://github.com/zhanghang1989/ResNeSt/blob/master/ablation.md"""
+#     model_kwargs = dict(
+#         block=ResNeSCBottleneck,
+#         layers=[3, 4, 6, 3],
+#         stem_type="deep",
+#         stem_width=32,
+#         avg_down=True,
+#         base_width=24,
+#         cardinality=4,
+#         block_args=dict(radix=1, avd=True, avd_first=True),
+#         **kwargs,
+#     )
+#     return _create_resnesc("resnest50d_1s4x24d", pretrained=pretrained, **model_kwargs)
 
 
 # ________________ Register Module To smp ______________________

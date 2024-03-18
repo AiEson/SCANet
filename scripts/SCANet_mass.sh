@@ -1,11 +1,10 @@
 #!/bin/bash
-# define the axes
 dataset='mass'
 method='train'
-data_root=/path/to/mass/dataset/
+data_root=/path/to/mass/dataset
 decoder_name='unetplusplus'
 encoder_name='scanet-101e'
-notes='ce_adamw_512x'
+notes='bce_dice'
 
 now=$(date +"%Y%m%d_%H%M%S")
 exp=${decoder_name}'_'${encoder_name}'_'${notes}

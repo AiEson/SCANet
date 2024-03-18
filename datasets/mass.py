@@ -17,9 +17,8 @@ def get_train_transform(img_size=512):
             A.RandomRotate90(p=0.75),
             A.OneOf(
                 [
-                    A.RandomContrast(),
+                    A.RandomBrightnessContrast(),
                     A.RandomGamma(),
-                    A.RandomBrightness(),
                     A.ColorJitter(
                         brightness=0.47,
                         contrast=0.47,

@@ -6,7 +6,6 @@ from tqdm import tqdm
 import yaml
 from utils.losses import ComboLoss
 from utils.utils import *
-import wandb
 import torch.backends.cudnn as cudnn
 from torch.optim import AdamW, SGD, Adam
 from torch.utils.data import DataLoader
@@ -53,12 +52,6 @@ def main():
     logger.propagate = 0
 
     os.makedirs(args.save_path, exist_ok=True)
-
-    run = wandb.init(
-        project=f"SCANet_{args.dataset}",
-        group=f"{args.exp_name}",
-        name=f"{args.exp_name}",
-    )
 
     cudnn.enabled = True
     cudnn.benchmark = True
@@ -179,13 +172,6 @@ def main():
                 lr = cfg["lr"] * (1 - iters / total_iters) ** 0.9
                 optimizer.param_groups[0]["lr"] = lr
 
-                if iters % 100 == 0:
-                    log_dict = {
-                        "loss_all": loss.item(),
-                        "lr": optimizer.param_groups[0]["lr"],
-                    }
-                    wandb.log(log_dict)
-
             logger.info("\nIters: {:}, Total loss: {:.3f}\n".format(i, total_loss.avg))
             if (epoch % 2 == 0):
                 model.eval()
@@ -213,12 +199,6 @@ def main():
                         mean_iou, mean_dice
                     )
                 )
-                wandb.log(
-                    {
-                        "eval/MeanDice": mean_dice,
-                        "eval/MeanIOU": mean_iou,
-                    }
-                )
 
                 is_best = mean_iou > previous_best
                 previous_best = max(mean_iou, previous_best)
@@ -228,7 +208,6 @@ def main():
                 }
                 torch.save(checkpoint, os.path.join(args.save_path, "latest.pth"))
                 if is_best:
-                    wandb.run.summary["best_score"] = mean_iou
                     logger.info(
                         f"\n\n***** Best MeanScore: {mean_iou:.4f} Saved! ***** \n\n"
                     )
