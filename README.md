@@ -1,4 +1,7 @@
 # SCANet
+
+- 🎉🎉🎉 This paper has been accepted by the [31th International Conference on Neural Information Processing (ICONIP)](https://iconip2024.org/)!
+
 The official PyTorch implementation of Paper "Split Coordinate Attention for Building Footprint Extraction".
 
 ## Usage
